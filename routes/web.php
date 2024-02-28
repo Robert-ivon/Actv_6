@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\ProductoController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [ProductoController::class, 'index'])->name('productos.index');
+
+Route::get('/create', [ProductoController::class, 'create'])->name('productos.create');
+
+Route::post('/store', [ProductoController::class, 'store'])->name('productos.store');
+
+Route::get('/{producto}/edit', [ProductoController::class, 'edit'])->name('productos.edit');
+
+Route::put('/{producto}', [ProductoController::class, 'update'])->name('productos.update');
+
+Route::delete('/{producto}', [ProductoController::class, 'destroy'])->name('productos.destroy');
